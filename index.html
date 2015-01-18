@@ -11,7 +11,7 @@
       // onload callback
       function drawChart() {
 
-        var public_key = 'dZ4EVmE8yGCRGx5XRX1W';
+        var public_key = 'pw3V5x60GDu56ERLQg7w';
 
         // JSONP request
         var jsonData = $.ajax({
@@ -23,21 +23,21 @@
           var data = new google.visualization.DataTable();
 
           data.addColumn('datetime', 'Time');
+          data.addColumn('number', 'Power');
           data.addColumn('number', 'Temp');
-          data.addColumn('number', 'Wind Speed MPH');
 
           $.each(results, function (i, row) {
             data.addRow([
               (new Date(row.timestamp)),
-              parseFloat(row.tempf),
-              parseFloat(row.windspeedmph)
+              parseFloat(row.power),
+              parseFloat(row.temp)
             ]);
           });
 
           var chart = new google.visualization.LineChart($('#chart').get(0));
 
           chart.draw(data, {
-            title: 'Wimp Weather Station'
+            title: 'housepower'
           });
 
         });
