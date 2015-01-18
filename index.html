@@ -24,13 +24,12 @@
 
           data.addColumn('datetime', 'Time');
           data.addColumn('number', 'Power');
-          data.addColumn('number', 'Temp');
+          
 
           $.each(results, function (i, row) {
             data.addRow([
               (new Date(row.timestamp)),
-              parseFloat(row.power),
-              parseFloat(row.temp)
+              parseFloat(row.power)
             ]);
           });
 
