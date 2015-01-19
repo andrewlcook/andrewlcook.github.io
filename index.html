@@ -16,7 +16,7 @@
         // JSONP request
         var jsonData = $.ajax({
           url: 'https://data.sparkfun.com/output/' + public_key + '.json',
-          data: {page: 1},
+          //data: {page: 1},
           dataType: 'jsonp',
         }).done(function (results) {
 
@@ -32,11 +32,14 @@
               parseFloat(row.power)
             ]);
           });
-
+		 var options = {
+		  title: 'Taylor House Power'
+		  //curveType: 'function',
+         };
           var chart = new google.visualization.LineChart($('#chart').get(0));
 
           chart.draw(data, {
-            title: 'housepower'
+            title: 'Taylor House Power'
           });
 
         });
