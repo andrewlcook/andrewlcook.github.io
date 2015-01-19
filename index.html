@@ -20,26 +20,37 @@
           dataType: 'jsonp',
         }).done(function (results) {
 
-          var data = new google.visualization.DataTable();
+          var powdata = new google.visualization.DataTable();
+          var tempdata = new google.visualization.DataTable();
 
-          data.addColumn('datetime', 'Time');
-          data.addColumn('number', 'Power');
-          
+          powdata.addColumn('datetime', 'Time');
+          powdata.addColumn('number', 'Power');
+          tempdata.addColumn('datetime', 'Time');
+          tempdata.addColumn('number', 'Temperature');
 
           $.each(results, function (i, row) {
-            data.addRow([
+            powdata.addRow([
               (new Date(row.timestamp)),
               parseFloat(row.power)
             ]);
+			tempdata.addRow([
+              (new Date(row.timestamp)),
+              parseFloat(row.temp)
+            ]);
           });
-		 var options = {
+		 var options1 = {
 		  title: 'Taylor House Power',
 		  curveType: 'none',
          };
-          var chart = new google.visualization.LineChart($('#chart').get(0));
+		 var options2 = {
+		  title: 'Taylor House Outdoor Temp',
+		  curveType: 'function',
+         };
+          var chart1 = new google.visualization.LineChart($('#chart1').get(0));
+          var chart2 = new google.visualization.LineChart($('#chart2').get(0));
 
-          chart.draw(data, options);
-
+          chart1.draw(powdata, options1);
+		  chart2.draw(tempdata, options2);
         });
 
       }
@@ -56,6 +67,7 @@
 
   </head>
   <body>
-    <div id="chart" style="width: 100%;"></div>
+    <div id="chart1" style="width: 100%;"></div>
+	<div id="chart2" style="width: 100%;"></div>
   </body>
 </html>
