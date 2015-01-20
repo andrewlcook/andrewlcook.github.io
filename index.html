@@ -13,7 +13,7 @@
       // onload callback
       function drawChart() {
 
-        var public_key = 'pw3V5x60GDu56ERLQg7w';
+        var public_key = 'YG5mJ5Qg8rIzXl1mYDaq';
 
         // JSONP request
         var jsonData = $.ajax({
@@ -24,12 +24,15 @@
 
           var powdata = new google.visualization.DataTable();
           var tempdata = new google.visualization.DataTable();
-
-          powdata.addColumn('datetime', 'Time');
+		  var totpowdata = new google.visualization.DataTable();
+          
+		  powdata.addColumn('datetime', 'Time');
           powdata.addColumn('number', 'Power');
           tempdata.addColumn('datetime', 'Time');
           tempdata.addColumn('number', 'Temperature');
-
+          totpowdata.addColumn('datetime', 'Time');
+          totpowdata.addColumn('number', 'Total Power');
+          
           $.each(results, function (i, row) {
             powdata.addRow([
               (new Date(row.timestamp)),
@@ -38,6 +41,10 @@
 			tempdata.addRow([
               (new Date(row.timestamp)),
               parseFloat(row.temp)
+            ]);
+			totpowdata.addRow([
+              (new Date(row.timestamp)),
+              parseFloat(row.totpower)
             ]);
           });
 		 var options1 = {
@@ -48,11 +55,18 @@
 		  title: 'Taylor House Outdoor Temp',
 		  curveType: 'none',
          };
+		 var options3 = {
+		  title: 'Taylor House Total Energy',
+		  curveType: 'none',
+         };
           var chart1 = new google.visualization.LineChart($('#chart1').get(0));
           var chart2 = new google.visualization.LineChart($('#chart2').get(0));
+		  var chart3 = new google.visualization.LineChart($('#chart2').get(0));
+
 
           chart1.draw(powdata, options1);
 		  chart2.draw(tempdata, options2);
+		  chart3.draw(totpowerdata, options2);
         });
 
       }
@@ -72,6 +86,6 @@
   <body>
     <div id="chart1" style="width: 100%;"></div>
 	<div id="chart2" style="width: 100%;"></div>
-	<div id="container" style="width: 100%;"></div>
+	<div id="chart3" style="width: 100%;"></div>
   </body>
 </html>
