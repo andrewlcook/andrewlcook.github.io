@@ -64,10 +64,30 @@
       google.setOnLoadCallback(drawChart);
 
     </script>
-
+		
+	<script>
+	$(document).ready(function() {
+		var options = {
+			chart: {
+            renderTo: 'container',
+            type: 'line'
+			},
+			series: [{}]
+		};
+        var public_key = 'pw3V5x60GDu56ERLQg7w';
+        var url =  "https://data.sparkfun.com/output/" + public_key + ".json";
+        $.getJSON(url,  function(data) {
+            options.series[0].data = data;
+            var chart = new Highcharts.Chart(options);
+        });
+        });
+	
+	</script>
+	
   </head>
   <body>
     <div id="chart1" style="width: 100%;"></div>
 	<div id="chart2" style="width: 100%;"></div>
+	<div id="container" style="width: 100%;"></div>
   </body>
 </html>
