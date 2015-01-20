@@ -6,7 +6,7 @@
     <script src="https://www.google.com/jsapi"></script>
 
 	
-    <script src="http://code.highcharts.com/highcharts.js"></script>
+    
     <!-- EXAMPLE SCRIPT -->
     <script>
 
@@ -67,24 +67,6 @@
 
     </script>
 		
-	<script>
-	$(document).ready(function() {
-		var options = {
-			chart: {
-            renderTo: 'container',
-            type: 'line'
-			},
-			series: [{}]
-		};
-        var public_key = 'pw3V5x60GDu56ERLQg7w';
-        var url =  "https://data.sparkfun.com/output/" + public_key + ".json";
-        $.getJSON(url,  function(data) {
-            options.series[0].data = data;
-            var chart = new Highcharts.Chart(options);
-        });
-        });
-	
-	</script>
 	
   </head>
   <body>
