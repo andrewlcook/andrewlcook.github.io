@@ -18,7 +18,7 @@
         // JSONP request
         var jsonData = $.ajax({
           url: 'https://data.sparkfun.com/output/' + public_key + '.json',
-          //data: {gt[timestamp]=now%20-1day},
+          data: 'gt[timestamp]=now%20-1day',
           dataType: 'jsonp',
         }).done(function (results) {
 
@@ -27,11 +27,11 @@
 		  var totpowdata = new google.visualization.DataTable();
           
 		  powdata.addColumn('datetime', 'Time');
-          powdata.addColumn('number', 'Power');
+          powdata.addColumn('number', 'Total Energy (kWh)');
           tempdata.addColumn('datetime', 'Time');
-          tempdata.addColumn('number', 'Temperature');
+          tempdata.addColumn('number', 'Temperature (degreesC)');
           totpowdata.addColumn('datetime', 'Time');
-          totpowdata.addColumn('number', 'Total Power');
+          totpowdata.addColumn('number', 'Instantaneous Power (Wh)');
           
           $.each(results, function (i, row) {
             powdata.addRow([
