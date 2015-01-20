@@ -50,6 +50,10 @@
 		 var options1 = {
 		  title: 'Taylor House Power',
 		  curveType: 'none',
+		  pointSize: 5,
+		  vAxis.minValue: 0,
+		  vAxis.maxValue: 25000,
+		  
          };
 		 var options2 = {
 		  title: 'Taylor House Outdoor Temp',
@@ -59,9 +63,9 @@
 		  title: 'Taylor House Total Energy',
 		  curveType: 'none',
          };
-          var chart1 = new google.visualization.LineChart($('#chart1').get(0));
-          var chart2 = new google.visualization.LineChart($('#chart2').get(0));
-		  var chart3 = new google.visualization.LineChart($('#chart3').get(0));
+          var chart1 = new google.visualization.AreaChart($('#chart1').get(0));
+          var chart2 = new google.visualization.AreaChart($('#chart2').get(0));
+		  var chart3 = new google.visualization.AreaChart($('#chart3').get(0));
 
 
           chart1.draw(totpowdata, options1);
