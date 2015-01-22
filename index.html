@@ -32,7 +32,7 @@
 		  bluedata.addColumn('number', 'Power Usage (Watts)');
 		  
           $.each(results, function (i, row) {
-            blueata.addRow([
+            bluedata.addRow([
               (new Date(row.timestamp)),
               parseFloat(row.power),
 			  parseFloat(row.temp),
@@ -49,37 +49,62 @@
 			'controlType': 'ChartRangeFilter',
 			'containerId': 'daterangepicker',
 			'options': {
-			'filterColumnLabel': 'Time'
-		}
+			'filterColumnLabel': 'Time',
+				'ui': {
+				'chartType': 'LineChart',
+				'chartOptions': {
+					'enableInteractivity': false,
+					'chartArea': {'height': '20%'},
+					'legend': {'position': 'none'},
+					'hAxis': {'textPosition': 'in'},
+					'vAxis': {
+						'textPosition': 'none',
+						'gridlines': {'color': 'none'}
+					}
+				},
+				'chartView': {'columns': [0, 3]}
+				}
+			}
 		});
 
 		var powChart = new google.visualization.ChartWrapper({
 			'chartType': 'LineChart',
 			'containerId': 'chart1',
 			'options': {
-			'title': 'Realtime Power Usage'
+			'title': 'Realtime Power Usage',
+			'series': [{'color': 'orange'}]
 		},
 		// out of all the available ones.
-			'view': {'columns': [0, 3]}
+			'view': {'columns': [0, 3]},
+			
+			
 		});
 		
 		var tempChart = new google.visualization.ChartWrapper({
 			'chartType': 'LineChart',
 			'containerId': 'chart3',
 			'options': {
-			'title': 'Temperature'
-		},
+			'title': 'Temperature',
+			'series': {
+				0: {'color': 'indigo'}
+			}
+			},
 		// out of all the available ones.
-			'view': {'columns': [0, 2]}
+			'view': {'columns': [0, 2]},
+			
 		});
 		var totpowChart = new google.visualization.ChartWrapper({
 			'chartType': 'LineChart',
 			'containerId': 'chart2',
 			'options': {
-			'title': 'Total Energy Usage (kWh)'
+			'title': 'Total Energy Usage (kWh)',
+			'series': {
+				0: {'color': 'green'}
+			}
 		},
 		// out of all the available ones.
-			'view': {'columns': [0, 1]}
+			'view': {'columns': [0, 1]},
+			
 		});
 		
 		 dashboard.bind(dateRangeSlider, [powChart, tempChart, totpowChart]);
