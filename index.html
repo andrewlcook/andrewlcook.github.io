@@ -38,8 +38,34 @@
 			  parseFloat(row.temp);
 			  parseFloat(row.totpower);
             ]);
+<<<<<<< HEAD
 		});
 		
+=======
+          });
+		 var options1 = {
+		  title: 'Taylor House Power',
+		  curveType: 'none',
+		  pointSize: 0,
+           };
+		 var options2 = {
+		  title: 'Taylor House Outdoor Temp',
+		  curveType: 'none',
+         };
+		 var options3 = {
+		  title: 'Taylor House Total Energy',
+		  curveType: 'none',
+         };
+          var chart1 = new google.visualization.AreaChart($('#chart1').get(0));
+          var chart2 = new google.visualization.AreaChart($('#chart2').get(0));
+		  var chart3 = new google.visualization.AreaChart($('#chart3').get(0));
+
+
+          chart1.draw(totpowdata, options1);
+		  chart2.draw(tempdata, options2);
+		  chart3.draw(powdata, options3);
+        });
+>>>>>>> origin/master
 
         var dashboard = new google.visualization.Dashboard(document.getElementById('dashboard_div'));
 
