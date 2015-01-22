@@ -34,9 +34,9 @@
           $.each(results, function (i, row) {
             powdata.addRow([
               (new Date(row.timestamp)),
-              parseFloat(row.power);
-			  parseFloat(row.temp);
-			  parseFloat(row.totpower);
+              parseFloat(row.power),
+			  parseFloat(row.temp),
+			  parseFloat(row.totpower),
             ]);
 		});
 		
