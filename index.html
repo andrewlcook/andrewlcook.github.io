@@ -32,7 +32,7 @@
 		  bluedata.addColumn('number', 'Power Usage (Watts)');
 		  
           $.each(results, function (i, row) {
-            powdata.addRow([
+            blueata.addRow([
               (new Date(row.timestamp)),
               parseFloat(row.power),
 			  parseFloat(row.temp),
@@ -84,7 +84,7 @@
 		
 		 dashboard.bind(dateRangeSlider, [powChart, tempChart, totpowChart]);
 		
-		dashboard.draw(powdata);
+		dashboard.draw(bluedata);
       
 	});
 	}
