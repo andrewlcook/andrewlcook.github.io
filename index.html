@@ -9,9 +9,10 @@
     
     <!-- EXAMPLE SCRIPT -->
     <script>
-
+	   google.load('visualization', '1.0', {'packages':['controls']});
+       google.setOnLoadCallback(drawDashboard);
       // onload callback
-      function drawChart() {
+      function drawDashboard() {
 
         var public_key = 'YG5mJ5Qg8rIzXl1mYDaq';
 
@@ -22,72 +23,80 @@
           dataType: 'jsonp',
         }).done(function (results) {
 
-          var powdata = new google.visualization.DataTable();
-          var tempdata = new google.visualization.DataTable();
-		  var totpowdata = new google.visualization.DataTable();
+          var bluedata = new google.visualization.DataTable();
+         
           
-		  powdata.addColumn('datetime', 'Time');
-          powdata.addColumn('number', 'Total Energy (kWh)');
-          tempdata.addColumn('datetime', 'Time');
-          tempdata.addColumn('number', 'Temperature (degreesC)');
-          totpowdata.addColumn('datetime', 'Time');
-          totpowdata.addColumn('number', 'Instantaneous Power (Wh)');
-          
+		  bluedata.addColumn('datetime', 'Time');
+          bluedata.addColumn('number', 'Total Energy (kWh)');
+          bluedata.addColumn('number', 'Temperature (degreesC)');
+		  bluedata.addColumn('number', 'Power Usage (Watts)');
+		  
           $.each(results, function (i, row) {
             powdata.addRow([
               (new Date(row.timestamp)),
-              parseFloat(row.power)
+              parseFloat(row.power);
+			  parseFloat(row.temp);
+			  parseFloat(row.totpower);
             ]);
-			tempdata.addRow([
-              (new Date(row.timestamp)),
-              parseFloat(row.temp)
-            ]);
-			totpowdata.addRow([
-              (new Date(row.timestamp)),
-              parseFloat(row.totpower)
-            ]);
-          });
-		 var options1 = {
-		  title: 'Taylor House Power',
-		  curveType: 'none',
-		  pointSize: 0,
-		  vAxis: {minValue:0,maxValue:25000},
-         };
-		 var options2 = {
-		  title: 'Taylor House Outdoor Temp',
-		  curveType: 'none',
-         };
-		 var options3 = {
-		  title: 'Taylor House Total Energy',
-		  curveType: 'none',
-         };
-          var chart1 = new google.visualization.AreaChart($('#chart1').get(0));
-          var chart2 = new google.visualization.AreaChart($('#chart2').get(0));
-		  var chart3 = new google.visualization.AreaChart($('#chart3').get(0));
+		});
+		
+
+        var dashboard = new google.visualization.Dashboard(document.getElementById('dashboard_div'));
 
 
-          chart1.draw(totpowdata, options1);
-		  chart2.draw(tempdata, options2);
-		  chart3.draw(powdata, options3);
-        });
+         // Create a range slider, passing some options
+		var dateRangeSlider = new google.visualization.ControlWrapper({
+			'controlType': 'ChartRangeFilter',
+			'containerId': 'daterangepicker',
+			'options': {
+			'filterColumnLabel': 'Time'
+		}
+		});
 
-      }
-
-      // load chart lib
-      google.load('visualization', '1', {
-        packages: ['corechart']
-      });
-
-      // call drawChart once google charts is loaded
-      google.setOnLoadCallback(drawChart);
-
+		var powChart = new google.visualization.ChartWrapper({
+			'chartType': 'LineChart',
+			'containerId': 'chart1',
+			'options': {
+			'title': 'Realtime Power Usage'
+		},
+		// out of all the available ones.
+			'view': {'columns': [0, 3]}
+		});
+		
+		var tempChart = new google.visualization.ChartWrapper({
+			'chartType': 'LineChart',
+			'containerId': 'chart3',
+			'options': {
+			'title': 'Temperature'
+		},
+		// out of all the available ones.
+			'view': {'columns': [0, 2]}
+		});
+		var totpowChart = new google.visualization.ChartWrapper({
+			'chartType': 'LineChart',
+			'containerId': 'chart2',
+			'options': {
+			'title': 'Total Energy Usage (kWh)'
+		},
+		// out of all the available ones.
+			'view': {'columns': [0, 1]}
+		});
+		
+		 dashboard.bind(dateRangeSlider, [powChart, tempChart, totpowChart]);
+		
+		dashboard.draw(powdata);
+      
+	}}
     </script>
 		
 	
   </head>
   <body>
-    <div id="chart1" style="width: 100%;"></div>
+    <div id="dashboard_div" style="width: 100%;">
+	<div id="chart1" style="width: 100%;"></div>
 	<div id="chart2" style="width: 100%;"></div>
 	<div id="chart3" style="width: 100%;"></div>
+	<div id="daterangepicker" style="width: 100%;"></div>
+	</div>
   </body>
 </html>
