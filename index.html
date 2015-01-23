@@ -19,7 +19,7 @@
         // JSONP request
         var jsonData = $.ajax({
           url: 'https://data.sparkfun.com/output/' + public_key + '.json',
-          data: 'gt[timestamp]=now%20-5day',
+          data: 'gt[timestamp]=now%20-2day',
           dataType: 'jsonp',
         }).done(function (results) {
 
