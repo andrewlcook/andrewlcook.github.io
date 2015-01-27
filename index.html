@@ -14,12 +14,12 @@
       // onload callback
       function drawDashboard() {
 
-        var public_key = 'YG5mJ5Qg8rIzXl1mYDaq';
+        var public_key = 'pw3V5x60GDu56ERLQg7w';
 
         // JSONP request
         var jsonData = $.ajax({
           url: 'https://data.sparkfun.com/output/' + public_key + '.json',
-          data: 'gt[timestamp]=now%20-5day',
+          data: 'gt[timestamp]=now%20-1day',
           dataType: 'jsonp',
         }).done(function (results) {
 
@@ -27,16 +27,15 @@
          
           
 		  bluedata.addColumn('datetime', 'Time');
-          bluedata.addColumn('number', 'Total Energy (kWh)');
-          bluedata.addColumn('number', 'Temperature (degreesC)');
-		  bluedata.addColumn('number', 'Power Usage (Watts)');
+          bluedata.addColumn('number', 'Power Usage (Watts)');
+		  bluedata.addColumn('number', 'Temperature (degreesC)');
+		  
 		  
           $.each(results, function (i, row) {
             bluedata.addRow([
               (new Date(row.timestamp)),
               parseFloat(row.power),
 			  parseFloat(row.temp),
-			  parseFloat(row.totpower),
             ]);
 		});
 		
@@ -62,7 +61,7 @@
 						'gridlines': {'color': 'none'}
 					}
 				},
-				'chartView': {'columns': [0, 3]}
+				'chartView': {'columns': [0, 1]}
 				}
 			}
 		});
@@ -75,14 +74,14 @@
 			'series': [{'color': 'orange'}]
 		},
 		// out of all the available ones.
-			'view': {'columns': [0, 3]},
+			'view': {'columns': [0, 1]},
 			
 			
 		});
 		
 		var tempChart = new google.visualization.ChartWrapper({
 			'chartType': 'LineChart',
-			'containerId': 'chart3',
+			'containerId': 'chart2',
 			'options': {
 			'title': 'Temperature',
 			'series': {
@@ -93,21 +92,8 @@
 			'view': {'columns': [0, 2]},
 			
 		});
-		var totpowChart = new google.visualization.ChartWrapper({
-			'chartType': 'LineChart',
-			'containerId': 'chart2',
-			'options': {
-			'title': 'Total Energy Usage (kWh)',
-			'series': {
-				0: {'color': 'green'}
-			}
-		},
-		// out of all the available ones.
-			'view': {'columns': [0, 1]},
-			
-		});
 		
-		 dashboard.bind(dateRangeSlider, [powChart, tempChart, totpowChart]);
+		 dashboard.bind(dateRangeSlider, [powChart, tempChart]);
 		
 		dashboard.draw(bluedata);
       
@@ -121,7 +107,6 @@
     <div id="dashboard_div" style="width: 100%;">
 	<div id="chart1" style="width: 100%;"></div>
 	<div id="chart2" style="width: 100%;"></div>
-	<div id="chart3" style="width: 100%;"></div>
 	<div id="daterangepicker" style="width: 100%;"></div>
 	</div>
   </body>
