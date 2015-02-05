@@ -1,4 +1,4 @@
-var public_key = '4JJyAzpz3vtw06EnDXnW';
+var public_key = 'pw3V5x60GDu56ERLQg7w';
 
 var TIMESTAMP_KEY = 'timestamp';
 
