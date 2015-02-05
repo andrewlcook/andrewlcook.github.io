@@ -9,7 +9,7 @@ $.ajax({
   url: 'http://data.sparkfun.com/output/' + public_key + '.json',
   jsonp: 'callback',
   dataType: 'jsonp',
-  data: 'page=1',
+  data: 'gt[timestamp]=now%20-1day',
   success: function(data) {
     $('.loading').hide();
     $('.done-loading').show();
