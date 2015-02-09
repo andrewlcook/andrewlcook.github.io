@@ -43,7 +43,10 @@ $.ajax({
       }
 
       var chart = chartHolder.highcharts({
-        chart: {
+        global: {
+		    useUTC: false
+        },
+		chart: {
           zoomType: 'x',
           type: 'line'
         },
