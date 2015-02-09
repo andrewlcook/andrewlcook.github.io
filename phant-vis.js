@@ -41,12 +41,13 @@ $.ajax({
         ];
         graphData.push(dataPoint);
       }
-
+	  Highcharts.setOptions({
+		global: {
+			 useUTC: false
+		}
+	  });
       var chart = chartHolder.highcharts({
-        global: {
-		    useUTC: false
-        },
-		chart: {
+        chart: {
           zoomType: 'x',
           type: 'line'
         },
