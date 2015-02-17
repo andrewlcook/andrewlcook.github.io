@@ -61,8 +61,8 @@ $.ajax({
                lineWidth: 1
             }
           },
-          threshold: null,
-	      ceiling: 15000
+          threshold: null
+	      
         },
         title: {
           text: key
@@ -73,7 +73,8 @@ $.ajax({
         yAxis: {
           title: {
             text: '',
-			min: 0
+			min: 0,
+			ceiling: 15000
           }
         },
         legend: {
