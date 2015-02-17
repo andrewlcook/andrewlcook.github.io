@@ -56,7 +56,8 @@ $.ajax({
                         lineWidth: 1
                     }
                 },
-                threshold: null
+                threshold: null,
+				ceiling: 15000
             }
 	  });
       var chart = chartHolder.highcharts({
