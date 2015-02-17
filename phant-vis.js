@@ -44,26 +44,25 @@ $.ajax({
 	  Highcharts.setOptions({
 		global: {
 			 useUTC: false
-		},
-		chart: {
-                plotShadow: true,
-				marker: {
-                    radius: 0.5
-                },
-                lineWidth: 0.5,
-                states: {
-                    hover: {
-                        lineWidth: 1
-                    }
-                },
-                threshold: null,
-				ceiling: 15000
-            }
+		}
+		
 	  });
       var chart = chartHolder.highcharts({
         chart: {
           zoomType: 'x',
-          type: 'line'
+          type: 'line',
+		  plotShadow: true,
+		  marker: {
+            radius: 0.5
+          },
+          lineWidth: 0.5,
+          states: {
+            hover: {
+               lineWidth: 1
+            }
+          },
+          threshold: null,
+	      ceiling: 15000
         },
         title: {
           text: key
