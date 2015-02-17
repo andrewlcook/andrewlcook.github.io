@@ -57,12 +57,12 @@ $.ajax({
 		  line: {
 			  
 			  marker: {
-				radius: 0.3
+				radius: 1
 			  },
-			  lineWidth: 0.2,
+			  lineWidth: 0.8,
 			  states: {
 				hover: {
-				   lineWidth: 0.5
+				   lineWidth: 1
 				}
 			  },
 			  threshold: null
