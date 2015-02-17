@@ -45,19 +45,12 @@ $.ajax({
 		global: {
 			 useUTC: false
 		},
-		area: {
+		chart: {
                 plotShadow: true,
-				fillColor: {
-                    linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1},
-                    stops: [
-                        [0, Highcharts.getOptions().colors[0]],
-                        [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
-                    ]
+				marker: {
+                    radius: 0.5
                 },
-                marker: {
-                    radius: 2
-                },
-                lineWidth: 1,
+                lineWidth: 0.5,
                 states: {
                     hover: {
                         lineWidth: 1
@@ -69,7 +62,7 @@ $.ajax({
       var chart = chartHolder.highcharts({
         chart: {
           zoomType: 'x',
-          type: 'area'
+          type: 'line'
         },
         title: {
           text: key
