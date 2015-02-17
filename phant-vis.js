@@ -52,7 +52,7 @@ $.ajax({
           zoomType: 'x',
           type: 'line',
 		  plotShadow: true
-		}
+		},
 		plotOptions: {  
 		  line: {
 			  
