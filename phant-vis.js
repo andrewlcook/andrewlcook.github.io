@@ -45,21 +45,9 @@ $.ajax({
 		global: {
 			 useUTC: false
 		},
-		chart: {
-            backgroundColor: {
-                linearGradient: [0, 0, 500, 500],
-                stops: [
-                    [0, 'rgb(255, 255, 255)'],
-                    [1, 'rgb(240, 240, 255)']
-                    ]
-            },
-            borderWidth: 0,
-            plotBackgroundColor: 'rgba(255, 255, 255, .9)',
-            plotShadow: true,
-            plotBorderWidth: 0
-        },
 		area: {
-                fillColor: {
+                plotShadow: true,
+				fillColor: {
                     linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1},
                     stops: [
                         [0, Highcharts.getOptions().colors[0]],
@@ -81,7 +69,7 @@ $.ajax({
       var chart = chartHolder.highcharts({
         chart: {
           zoomType: 'x',
-          type: 'line'
+          type: 'area'
         },
         title: {
           text: key
