@@ -51,19 +51,23 @@ $.ajax({
         chart: {
           zoomType: 'x',
           type: 'line',
-		  plotShadow: true,
-		  marker: {
-            radius: 0.5
-          },
-          lineWidth: 0.5,
-          states: {
-            hover: {
-               lineWidth: 1
-            }
-          },
-          threshold: null
-	      
-        },
+		  plotShadow: true
+		}
+		plotOptions: {  
+		  line: {
+			  
+			  marker: {
+				radius: 0.3
+			  },
+			  lineWidth: 0.2,
+			  states: {
+				hover: {
+				   lineWidth: 0.5
+				}
+			  },
+			  threshold: null
+		   }
+	    },
         title: {
           text: key
         },
