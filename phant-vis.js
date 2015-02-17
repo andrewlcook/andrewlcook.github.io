@@ -78,6 +78,7 @@ $.ajax({
           title: {
             text: '',
 			min: 0,
+			startOnTick: false,
 			ceiling: 15000
           }
         },
