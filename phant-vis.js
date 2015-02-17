@@ -44,7 +44,7 @@ $.ajax({
 	  Highcharts.setOptions({
 		global: {
 			 useUTC: false
-		}
+		},
 		chart: {
             backgroundColor: {
                 linearGradient: [0, 0, 500, 500],
